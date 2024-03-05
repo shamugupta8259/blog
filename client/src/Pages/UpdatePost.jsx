@@ -25,6 +25,9 @@ export default function UpdatePost() {
 
 	const navigate = useNavigate();
 	const { currentUser } = useSelector((state) => state.user);
+	// console.log(formData);
+	// console.log("currentUser: ", currentUser._id);
+	// console.log("postid: ", postId);
 
 	useEffect(() => {
 		try {
@@ -39,6 +42,8 @@ export default function UpdatePost() {
 				if (res.ok) {
 					setPublishError(null);
 					setFormData(data.posts[0]);
+					// console.log("data: ", data.posts[0]._id);
+					// console.log("*****************************", formData);
 				}
 			};
 
@@ -88,7 +93,7 @@ export default function UpdatePost() {
 		e.preventDefault();
 		try {
 			const res = await fetch(
-				`/api/post/updatepost/${formData._id}/${currentUser._id}`,
+				`/api/post/updatepost/${postId}/${currentUser._id}`,
 				{
 					method: "PUT",
 					headers: {
